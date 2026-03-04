@@ -46,3 +46,86 @@ A full-featured electronics e-commerce web application with an integrated admin 
 3. That's it! No build step or server needed.
 
 ## 📁 Project Structure
+
+
+# 🔐 TechBazaar – Electronics Store with ML-Based SQL Injection Detection
+
+![Status](https://img.shields.io/badge/Status-Active-green)
+![Domain](https://img.shields.io/badge/Domain-Web%20Security-blue)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+
+---
+
+## 📌 Overview
+
+TechBazaar is a full-featured electronics e-commerce web application built entirely in the browser, integrated with a **machine learning-based SQL injection detection and mitigation engine** inside the admin panel.
+
+💼 **Job Relevance:**  
+Demonstrates practical skills in:
+- Web application security
+- SQL injection detection & mitigation
+- Threat logging & monitoring
+- ML-based anomaly detection
+- Admin dashboard threat intelligence visualization
+
+This project simulates how real-world security monitoring systems detect and block injection attacks in production applications.
+
+---
+
+## 🛠️ Features
+
+### 🛍️ Customer Module
+- Product browsing with category filters
+- Product detail modal with full specifications
+- Shopping cart with quantity management
+- 3-step checkout (Address → Payment → Confirmation)
+- Secure login & registration with SQLi protection
+- User profile with order history
+
+### ⚙️ Admin Panel
+- Security Overview Dashboard with attack distribution
+- User Management (activate/suspend/promote/demote)
+- Complete SQL Injection attack logs
+- Live request monitoring stream
+- Manual SQL injection testing console
+- ML model training interface (algorithm, epochs, learning rate)
+- Dataset management (add/remove/bulk import training samples)
+
+---
+
+## 🧱 Tech Stack
+
+- **HTML5**
+- **CSS3**
+- **Vanilla JavaScript**
+- No backend
+- No external libraries
+- Runs entirely in the browser
+
+---
+
+## 🧠 ML-Based SQL Injection Detection Engine
+
+The detection engine includes:
+
+- Pattern-based weighted scoring
+- User-trainable pattern dataset
+- String similarity comparison
+- Confidence scoring system
+- Risk classification (Low / Medium / High)
+- Automatic blocking of malicious input
+- Real-time attack logging
+
+This simulates behavior similar to:
+- Web Application Firewalls (WAF)
+- Intrusion Detection Systems (IDS)
+- Behavioral anomaly detection engines
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/Aravind93911/techbazaar.git
+cd techbazaar
