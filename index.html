@@ -5,1034 +5,270 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TechBazaar - Electronics Store</title>
 <style>
-/* CSS styles remain the same as original */
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--pri:#6c5ce7;--pri2:#5a4bd1;--sec:#00cec9;--red:#d63031;--grn:#00b894;--yel:#fdcb6e;--dk:#2d3436;--gy:#636e72;--lt:#dfe6e9;--bg:#f5f6fa;--card:#fff;--sh:0 2px 16px rgba(0,0,0,.08)}
-html,body{width:100%;height:100%;overflow-x:hidden}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--dk)}
-.hidden{display:none!important}
-a{cursor:pointer}
-nav{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:0 30px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(108,92,231,.3)}
-.logo{font-size:1.35em;font-weight:800;cursor:pointer;letter-spacing:-.5px}
-.logo span{color:var(--yel)}
-.nav-links{display:flex;gap:4px;align-items:center}
-.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.88em;padding:8px 16px;border-radius:8px;transition:.2s;display:flex;align-items:center;gap:6px}
-.nav-links a:hover{background:rgba(255,255,255,.15);color:#fff}
-.cart-link{position:relative}
-.cart-badge{position:absolute;top:2px;right:2px;background:var(--red);border-radius:50%;min-width:18px;height:18px;font-size:.68em;display:flex;align-items:center;justify-content:center;font-weight:700}
-.mob-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5em;cursor:pointer}
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6c5ce7 0%,#a29bfe 50%,#6c5ce7 100%);background-size:200% 200%;animation:gradShift 8s ease infinite;padding:20px}
-@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.auth-card{background:#fff;border-radius:20px;padding:40px 36px;width:440px;max-width:100%;box-shadow:0 25px 80px rgba(0,0,0,.2)}
-.auth-card h2{text-align:center;margin-bottom:24px;color:var(--pri);font-size:1.6em}
-.auth-tabs{display:flex;margin-bottom:24px;border-radius:12px;overflow:hidden;border:2px solid var(--pri)}
-.auth-tabs button{flex:1;padding:11px;border:none;cursor:pointer;font-weight:700;font-size:.92em;transition:.2s;background:#fff;color:var(--pri)}
-.auth-tabs button.on{background:var(--pri);color:#fff}
-.field{margin-bottom:16px}
-.field label{display:block;margin-bottom:5px;font-size:.82em;font-weight:600;color:var(--gy)}
-.field input,.field select,.field textarea{width:100%;padding:11px 15px;border:2px solid var(--lt);border-radius:10px;font-size:.92em;outline:none;transition:.2s;font-family:inherit}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--pri);box-shadow:0 0 0 3px rgba(108,92,231,.1)}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.btn{padding:11px 24px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:.9em;transition:.2s;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
-.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
-.btn:active{transform:translateY(0)}
-.bp{background:var(--pri);color:#fff}.br{background:var(--red);color:#fff}.bg{background:var(--grn);color:#fff}.bs{background:var(--gy);color:#fff}.bw{background:var(--yel);color:var(--dk)}.bi{background:#0984e3;color:#fff}
-.btn-full{width:100%;justify-content:center;padding:13px}
-.btn-sm{padding:5px 14px;font-size:.78em}
-.alert-box{padding:11px 16px;border-radius:10px;margin-bottom:16px;font-size:.85em;display:none;font-weight:500}
-.alert-box.err{display:block;background:#ffe0e0;color:#c0392b;border:1px solid #fab1a0}
-.alert-box.ok{display:block;background:#d4f9e8;color:#00b894;border:1px solid #55efc4}
-.page{max-width:1400px;margin:0 auto;padding:28px 32px}
-.hero{background:linear-gradient(135deg,#6c5ce7,#a29bfe);border-radius:24px;padding:48px 36px;color:#fff;text-align:center;margin-bottom:32px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:rgba(255,255,255,.06);border-radius:50%}
-.hero h1{font-size:2.3em;margin-bottom:8px;position:relative;z-index:1}
-.hero p{font-size:1.08em;opacity:.88;margin-bottom:22px;position:relative;z-index:1}
-.search-wrap{display:flex;max-width:520px;margin:0 auto;position:relative;z-index:1}
-.search-wrap input{flex:1;padding:13px 22px;border:none;border-radius:30px 0 0 30px;font-size:.95em;outline:none}
-.search-wrap button{padding:13px 28px;border:none;background:var(--yel);color:var(--dk);font-weight:800;border-radius:0 30px 30px 0;cursor:pointer;font-size:1em}
-.cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
-.cat{padding:9px 20px;background:var(--card);border:2px solid var(--lt);border-radius:25px;cursor:pointer;font-weight:600;font-size:.85em;transition:.2s}
-.cat:hover,.cat.on{background:var(--pri);color:#fff;border-color:var(--pri)}
-.sec-title{font-size:1.4em;font-weight:800;margin-bottom:20px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-bottom:36px}
-.pcard{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--sh);transition:.25s;cursor:pointer}
-.pcard:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.12)}
-.pcard-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:5em;background:linear-gradient(135deg,#f8f9fa,#e8eaed)}
-.pcard-body{padding:16px}
-.pcard-body h3{font-size:.95em;margin-bottom:5px;line-height:1.3;min-height:2.5em}
-.pcard-body .stars{color:#f39c12;font-size:.82em;margin-bottom:6px}
-.pcard-body .price{color:var(--pri);font-weight:800;font-size:1.2em}
-.pcard-body .oldp{text-decoration:line-through;color:var(--gy);font-size:.82em;margin-left:6px}
-.pcard-body .disc{background:#dfe6e9;color:var(--grn);font-size:.72em;padding:2px 8px;border-radius:12px;font-weight:700;margin-left:6px}
-.atc-btn{width:100%;padding:9px;margin-top:10px;background:var(--pri);color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:.85em;transition:.2s}
-.atc-btn:hover{background:var(--pri2)}
-.cart-layout{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start}
-.cart-list{display:flex;flex-direction:column;gap:14px}
-.ci{display:flex;gap:16px;background:var(--card);padding:16px 20px;border-radius:14px;box-shadow:var(--sh);align-items:center}
-.ci-emoji{font-size:3em;min-width:70px;text-align:center}
-.ci-info{flex:1}
-.ci-info h3{font-size:.95em;margin-bottom:3px}
-.ci-info .price{color:var(--pri);font-weight:700;font-size:1.05em}
-.qty{display:flex;align-items:center;gap:8px;margin-top:6px}
-.qty button{width:28px;height:28px;border:2px solid var(--lt);border-radius:8px;background:#fff;cursor:pointer;font-weight:700;font-size:1em}
-.qty span{min-width:20px;text-align:center;font-weight:600}
-.ci-rm{color:var(--red);cursor:pointer;font-size:1.3em;padding:6px;transition:.2s}
-.ci-rm:hover{transform:scale(1.2)}
-.cart-sum{background:var(--card);padding:28px;border-radius:16px;box-shadow:var(--sh);position:sticky;top:80px}
-.cart-sum h3{margin-bottom:16px;font-size:1.1em}
-.srow{display:flex;justify-content:space-between;margin-bottom:10px;font-size:.92em}
-.srow.total{font-weight:800;font-size:1.2em;border-top:2px solid var(--lt);padding-top:12px;margin-top:12px;color:var(--pri)}
-.co-steps{display:flex;gap:10px;margin-bottom:28px;justify-content:center}
-.co-steps .step{padding:8px 22px;background:var(--lt);border-radius:25px;font-weight:700;font-size:.84em;transition:.2s}
-.co-steps .step.on{background:var(--pri);color:#fff}
-.co-steps .step.done{background:var(--grn);color:#fff}
-.co-form{max-width:640px;margin:0 auto;background:var(--card);padding:32px;border-radius:18px;box-shadow:var(--sh)}
-.co-form h3{margin-bottom:20px;font-size:1.15em}
-.co-success{text-align:center;padding:50px 20px}
-.co-success .icon{font-size:4.5em;margin-bottom:14px}
-.prof-wrap{max-width:740px;margin:0 auto}
-.prof-head{text-align:center;padding:32px;background:var(--card);border-radius:18px;box-shadow:var(--sh);margin-bottom:24px}
-.prof-head .avatar{font-size:4em;margin-bottom:10px}
-.prof-sec{background:var(--card);padding:26px;border-radius:18px;box-shadow:var(--sh);margin-bottom:20px}
-.prof-sec h3{margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--lt)}
-.adm-wrap{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 56px)}
-.adm-side{background:var(--dk);color:#fff;padding:20px 14px;overflow-y:auto}
-.adm-side h3{margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.1);font-size:.88em;color:var(--sec);text-transform:uppercase;letter-spacing:.5px}
-.adm-side a{display:flex;align-items:center;gap:10px;padding:12px 16px;color:#b2bec3;text-decoration:none;border-radius:10px;margin-bottom:4px;transition:.2s;font-size:.88em;font-weight:500}
-.adm-side a:hover,.adm-side a.on{background:rgba(108,92,231,.3);color:#fff}
-.adm-side .sbadge{margin-left:auto;background:var(--red);color:#fff;border-radius:50%;min-width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:.7em;font-weight:700}
-.adm-body{padding:28px 32px;overflow-y:auto;max-height:calc(100vh - 56px);background:var(--bg)}
-.adm-body h2{margin-bottom:22px;font-size:1.35em}
-.adm-toggle{display:none;position:fixed;bottom:22px;left:22px;z-index:999;width:52px;height:52px;border-radius:50%;background:var(--dk);color:#fff;border:none;font-size:1.4em;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
-.scard{background:var(--card);padding:20px;border-radius:14px;box-shadow:var(--sh);transition:.2s}
-.scard:hover{transform:translateY(-2px)}
-.scard .sicon{font-size:1.8em;margin-bottom:8px}
-.scard .sval{font-size:1.8em;font-weight:800}
-.scard .slbl{color:var(--gy);font-size:.8em;margin-top:2px}
-.tw{overflow-x:auto;border-radius:12px;box-shadow:var(--sh);margin-bottom:20px}
-table{width:100%;border-collapse:collapse;background:var(--card)}
-th,td{padding:11px 16px;text-align:left;font-size:.84em}
-th{background:var(--dk);color:#fff;font-weight:600;white-space:nowrap}
-tr:nth-child(even){background:#f8f9fa}
-tr:hover{background:#eef1f5}
-.badge{padding:3px 11px;border-radius:20px;font-size:.73em;font-weight:700;white-space:nowrap}
-.b-red{background:#ffeaa7;color:var(--red)}.b-grn{background:#d4f9e8;color:var(--grn)}.b-yel{background:#fff3cd;color:#856404}.b-blu{background:#d4f1f9;color:#0984e3}.b-crit{background:#ff7675;color:#fff}
-.panel{background:var(--card);padding:24px;border-radius:14px;box-shadow:var(--sh);margin-bottom:20px}
-.panel h3{margin-bottom:16px;display:flex;align-items:center;gap:8px;font-size:1.08em}
-.prog-bar{width:100%;height:24px;background:var(--lt);border-radius:12px;overflow:hidden;margin:14px 0}
-.prog-bar .fill{height:100%;background:linear-gradient(90deg,var(--pri),var(--sec));border-radius:12px;transition:width .5s}
-.monitor{height:300px;overflow-y:auto;background:#1e272e;color:#7bed9f;padding:16px;border-radius:10px;font-family:'Courier New',monospace;font-size:.8em;line-height:1.6}
-.monitor .entry{margin-bottom:3px;padding:2px 0;border-bottom:1px solid rgba(255,255,255,.04)}
-.monitor .threat{color:#ff6b6b}
-.monitor .safe{color:#7bed9f}
-.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
-.sbox{text-align:center;padding:16px;background:var(--bg);border-radius:12px}
-.sbox .sv{font-size:1.7em;font-weight:800}
-.sbox .sl{font-size:.78em;color:var(--gy);margin-top:2px}
-.fbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.modal-bg{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.45);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
-.modal-box{background:#fff;border-radius:20px;padding:32px;max-width:540px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 25px 80px rgba(0,0,0,.25)}
-.modal-box h3{margin-bottom:18px}
-.modal-x{float:right;cursor:pointer;font-size:1.3em;background:none;border:none;color:var(--gy);transition:.2s}
-.modal-x:hover{color:var(--dk)}
-.toast-wrap{position:fixed;top:68px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
-.toast{padding:13px 22px;border-radius:12px;color:#fff;font-size:.88em;font-weight:600;animation:tIn .35s ease;box-shadow:0 6px 20px rgba(0,0,0,.15);pointer-events:auto}
-.t-ok{background:var(--grn)}.t-err{background:var(--red)}.t-warn{background:#e17055}
-@keyframes tIn{from{transform:translateX(120%);opacity:0}to{transform:translateX(0);opacity:1}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@media(max-width:1024px){
-.adm-wrap{grid-template-columns:1fr}
-.adm-side{display:none;position:fixed;top:56px;left:0;bottom:0;width:260px;z-index:999;box-shadow:4px 0 20px rgba(0,0,0,.3)}
-.adm-side.show{display:block}
-.adm-toggle{display:block}
-}
-@media(max-width:768px){
-.mob-toggle{display:block}
-.nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:var(--pri2);flex-direction:column;padding:14px;gap:4px;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-.nav-links.show{display:flex}
-.cart-layout{grid-template-columns:1fr}
-.row2{grid-template-columns:1fr}
-.hero h1{font-size:1.5em}
-.pgrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
-.pcard-img{height:140px;font-size:3.8em}
-.page{padding:16px}
-.sgrid{grid-template-columns:1fr 1fr}
-}
-#loading{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--pri);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:9999;color:#fff}
-#loading .spinner{width:50px;height:50px;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+    /* CSS Styles - Maintained for UI Consistency */
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--pri:#6c5ce7;--pri2:#5a4bd1;--sec:#00cec9;--red:#d63031;--grn:#00b894;--yel:#fdcb6e;--dk:#2d3436;--gy:#636e72;--lt:#dfe6e9;--bg:#f5f6fa;--card:#fff;--sh:0 2px 16px rgba(0,0,0,.08)}
+    html,body{width:100%;height:100%;overflow-x:hidden}
+    body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--dk)}
+    .hidden{display:none!important}
+    a{cursor:pointer}
+    nav{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:0 30px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(108,92,231,.3)}
+    .logo{font-size:1.35em;font-weight:800;cursor:pointer;letter-spacing:-.5px}
+    .logo span{color:var(--yel)}
+    .nav-links{display:flex;gap:4px;align-items:center}
+    .nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.88em;padding:8px 16px;border-radius:8px;transition:.2s;display:flex;align-items:center;gap:6px}
+    .nav-links a:hover{background:rgba(255,255,255,.15);color:#fff}
+    .cart-link{position:relative}
+    .cart-badge{position:absolute;top:2px;right:2px;background:var(--red);border-radius:50%;min-width:18px;height:18px;font-size:.68em;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .mob-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5em;cursor:pointer}
+    .auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#6c5ce7 0%,#a29bfe 50%,#6c5ce7 100%);background-size:200% 200%;animation:gradShift 8s ease infinite;padding:20px}
+    @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .auth-card{background:#fff;border-radius:20px;padding:40px 36px;width:440px;max-width:100%;box-shadow:0 25px 80px rgba(0,0,0,.2)}
+    .auth-card h2{text-align:center;margin-bottom:24px;color:var(--pri);font-size:1.6em}
+    .auth-tabs{display:flex;margin-bottom:24px;border-radius:12px;overflow:hidden;border:2px solid var(--pri)}
+    .auth-tabs button{flex:1;padding:11px;border:none;cursor:pointer;font-weight:700;font-size:.92em;transition:.2s;background:#fff;color:var(--pri)}
+    .auth-tabs button.on{background:var(--pri);color:#fff}
+    .field{margin-bottom:16px}
+    .field label{display:block;margin-bottom:5px;font-size:.82em;font-weight:600;color:var(--gy)}
+    .field input,.field select,.field textarea{width:100%;padding:11px 15px;border:2px solid var(--lt);border-radius:10px;font-size:.92em;outline:none;transition:.2s;font-family:inherit}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--pri);box-shadow:0 0 0 3px rgba(108,92,231,.1)}
+    .btn{padding:11px 24px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:.9em;transition:.2s;display:inline-flex;align-items:center;gap:6px;font-family:inherit}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+    .bp{background:var(--pri);color:#fff}.br{background:var(--red);color:#fff}.bg{background:var(--grn);color:#fff}.bs{background:var(--gy);color:#fff}.bw{background:var(--yel);color:var(--dk)}
+    .btn-full{width:100%;justify-content:center;padding:13px}
+    .alert-box{padding:11px 16px;border-radius:10px;margin-bottom:16px;font-size:.85em;display:none;font-weight:500}
+    .alert-box.err{display:block;background:#ffe0e0;color:#c0392b;border:1px solid #fab1a0}
+    .page{max-width:1400px;margin:0 auto;padding:28px 32px}
+    .hero{background:linear-gradient(135deg,#6c5ce7,#a29bfe);border-radius:24px;padding:48px 36px;color:#fff;text-align:center;margin-bottom:32px;position:relative}
+    .search-wrap{display:flex;max-width:520px;margin:0 auto;position:relative;z-index:1}
+    .search-wrap input{flex:1;padding:13px 22px;border:none;border-radius:30px 0 0 30px;outline:none}
+    .search-wrap button{padding:13px 28px;border:none;background:var(--yel);border-radius:0 30px 30px 0;cursor:pointer}
+    .cats{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+    .cat{padding:9px 20px;background:var(--card);border:2px solid var(--lt);border-radius:25px;cursor:pointer;font-weight:600}
+    .cat.on{background:var(--pri);color:#fff}
+    .pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+    .pcard{background:var(--card);border-radius:16px;overflow:hidden;box-shadow:var(--sh);transition:.25s;cursor:pointer}
+    .pcard:hover{transform:translateY(-5px)}
+    .pcard-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:5em;background:#f8f9fa}
+    .pcard-body{padding:16px}
+    .price{color:var(--pri);font-weight:800;font-size:1.2em}
+    .atc-btn{width:100%;padding:9px;margin-top:10px;background:var(--pri);color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:700}
+    .adm-wrap{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 56px)}
+    .adm-side{background:var(--dk);color:#fff;padding:20px 14px}
+    .adm-side a{display:flex;align-items:center;gap:10px;padding:12px 16px;color:#b2bec3;text-decoration:none;border-radius:10px;margin-bottom:4px;font-size:.88em}
+    .adm-side a.on{background:rgba(108,92,231,.3);color:#fff}
+    .adm-body{padding:28px 32px;background:var(--bg)}
+    .toast-wrap{position:fixed;top:68px;right:20px;z-index:3000;display:flex;flex-direction:column;gap:8px}
+    .toast{padding:13px 22px;border-radius:12px;color:#fff;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+    .t-ok{background:var(--grn)}.t-err{background:var(--red)}
+    #loading{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--pri);display:flex;align-items:center;justify-content:center;z-index:9999;color:#fff}
 </style>
 </head>
 <body>
 
-<div id="loading"><div class="spinner"></div><p style="margin-top:20px">Loading Database...</p></div>
+<div id="loading"><p>Loading Database...</p></div>
 <div class="toast-wrap" id="TW"></div>
 
-<!-- ========== AUTH ========== -->
 <div id="authPage" class="auth-wrap">
-<div class="auth-card">
-<h2>⚡ TechBazaar</h2>
-<div class="auth-tabs">
-<button class="on" onclick="authTab('login')">Login</button>
-<button onclick="authTab('register')">Register</button>
-</div>
-<div id="authMsg" class="alert-box"></div>
-<div id="loginF">
-<div class="field"><label>Email</label><input type="email" id="lEmail" placeholder="your@email.com"></div>
-<div class="field"><label>Password</label><input type="password" id="lPass" placeholder="Password"></div>
-<button class="btn bp btn-full" onclick="doLogin()">🔐 Login</button>
-<p style="text-align:center;margin-top:12px;font-size:.78em;color:var(--gy)">Admin: admin@tech.com / admin123<br>User: john@test.com / john123</p>
-</div>
-<div id="regF" class="hidden">
-<div class="field"><label>Full Name</label><input id="rName" placeholder="Name"></div>
-<div class="field"><label>Email</label><input type="email" id="rEmail" placeholder="Email"></div>
-<div class="field"><label>Password</label><input type="password" id="rPass" placeholder="Password"></div>
-<div class="field"><label>Phone</label><input id="rPhone" placeholder="Phone"></div>
-<button class="btn bp btn-full" onclick="doRegister()">🚀 Create Account</button>
-</div>
-</div>
+    <div class="auth-card">
+        <h2>⚡ TechBazaar</h2>
+        <div class="auth-tabs">
+            <button class="on" onclick="authTab('login')">Login</button>
+            <button onclick="authTab('register')">Register</button>
+        </div>
+        <div id="authMsg" class="alert-box"></div>
+        <div id="loginF">
+            <div class="field"><label>Email</label><input type="email" id="lEmail" placeholder="admin@tech.com"></div>
+            <div class="field"><label>Password</label><input type="password" id="lPass" placeholder="Password"></div>
+            <button class="btn bp btn-full" onclick="doLogin()">🔐 Login</button>
+        </div>
+        <div id="regF" class="hidden">
+            <div class="field"><label>Full Name</label><input id="rName"></div>
+            <div class="field"><label>Email</label><input type="email" id="rEmail"></div>
+            <div class="field"><label>Password</label><input type="password" id="rPass"></div>
+            <div class="field"><label>Phone</label><input id="rPhone"></div>
+            <button class="btn bp btn-full" onclick="doRegister()">🚀 Create Account</button>
+        </div>
+    </div>
 </div>
 
-<!-- ========== APP ========== -->
 <div id="APP" class="hidden">
-<nav>
-<div class="logo" onclick="go('home')">⚡ Tech<span>Bazaar</span></div>
-<button class="mob-toggle" onclick="document.getElementById('NL').classList.toggle('show')">☰</button>
-<div class="nav-links" id="NL">
-<a onclick="go('home')">🏠 Home</a>
-<a onclick="go('shop')">🛍️ Shop</a>
-<a onclick="go('cart')" class="cart-link">🛒 Cart<span class="cart-badge" id="CB">0</span></a>
-<a onclick="go('profile')">👤 Profile</a>
-<a id="admLink" class="hidden" onclick="go('admin')">⚙️ Admin</a>
-<a onclick="logout()">🚪 Logout</a>
-</div>
-</nav>
+    <nav>
+        <div class="logo" onclick="go('home')">⚡ Tech<span>Bazaar</span></div>
+        <div class="nav-links">
+            <a onclick="go('home')">🏠 Home</a>
+            <a onclick="go('shop')">🛍️ Shop</a>
+            <a onclick="go('cart')">🛒 Cart <span id="CB">0</span></a>
+            <a onclick="go('profile')">👤 Profile</a>
+            <a id="admLink" class="hidden" onclick="go('admin')">⚙️ Admin</a>
+            <a onclick="logout()">🚪 Logout</a>
+        </div>
+    </nav>
 
-<div id="PG_home" class="page">
-<div class="hero"><h1>🎧 Premium Electronics at Best Prices</h1><p>Smartwatches · Earbuds · Earphones · Speakers · Chargers</p>
-<div class="search-wrap"><input id="SQ" placeholder="Search products..." oninput="rProds()"><button onclick="rProds()">🔍</button></div></div>
-<div class="cats" id="HC"></div>
-<div class="sec-title">🔥 Featured Products</div>
-<div class="pgrid" id="HG"></div>
-</div>
+    <div id="PG_home" class="page">
+        <div class="hero"><h1>Premium Electronics</h1><p>Smartwatches · Audio · Chargers</p></div>
+        <div class="pgrid" id="HG"></div>
+    </div>
 
-<div id="PG_shop" class="page hidden">
-<div class="sec-title">🛍️ All Products</div>
-<div class="cats" id="SC"></div>
-<div class="pgrid" id="SG"></div>
-</div>
-
-<div id="PG_cart" class="page hidden">
-<div class="sec-title">🛒 Shopping Cart</div>
-<div class="cart-layout"><div class="cart-list" id="CL"></div><div class="cart-sum" id="CS"></div></div>
-</div>
-
-<div id="PG_checkout" class="page hidden">
-<div class="sec-title">📦 Checkout</div>
-<div class="co-steps" id="COsteps"></div>
-<div class="co-form" id="COform"></div>
-</div>
-
-<div id="PG_profile" class="page hidden"><div class="prof-wrap" id="PRF"></div></div>
-
-<div id="PG_admin" class="hidden">
-<button class="adm-toggle" onclick="document.getElementById('ASIDE').classList.toggle('show')">☰</button>
-<div class="adm-wrap">
-<div class="adm-side" id="ASIDE">
-<h3>⚙️ Admin Panel</h3>
-<a class="on" data-t="overview" onclick="admGo('overview',this)">📊 Overview<span class="sbadge" id="TB">0</span></a>
-<a data-t="users" onclick="admGo('users',this)">👥 User Management</a>
-<a data-t="logs" onclick="admGo('logs',this)">📋 Attack Logs</a>
-<a data-t="monitor" onclick="admGo('monitor',this)">🖥️ Live Monitor</a>
-<a data-t="training" onclick="admGo('training',this)">🧠 ML Training</a>
-<a data-t="dataset" onclick="admGo('dataset',this)">📁 Dataset</a>
-</div>
-<div class="adm-body" id="ADM"></div>
-</div>
-</div>
+    <div id="PG_admin" class="page hidden">
+        <div class="adm-wrap">
+            <div class="adm-side">
+                <a class="on" onclick="admGo('logs', this)">📋 Attack Logs</a>
+                <a onclick="admGo('users', this)">👥 Users</a>
+            </div>
+            <div class="adm-body" id="ADM"></div>
+        </div>
+    </div>
 </div>
 
 <script>
-const API ='https://tech-bazzar-1.onrender.com'; // Empty = same origin
+// Backend URL (Use current origin if hosted together)
+const API = window.location.origin; 
 
-// =============== DATA STORE ===============
-let D = {
-  users: [], prods: [], cart: [], orders: [], logs: [], ds: [], ml: {},
-  me: null, coStep: 1, coData: {}
-};
-let cat = 'all', MIV = null;
+let D = { users:[], prods:[], cart:[], me:null, logs:[] };
+let MIV = null;
 
-// =============== SQLI DETECTOR ===============
-class SQLD {
-  constructor() {
-    this.pats = [
-      { r: /(\bunion\b.*\bselect\b)/gi, w: 5, n: 'UNION SELECT' },
-      { r: /(drop\s+table|truncate\s+table)/gi, w: 5, n: 'Destructive' },
-      { r: /(xp_cmdshell|exec\s*\(|execute\s*\()/gi, w: 5, n: 'Command Exec' },
-      { r: /('.*\bor\b.*'.*=.*')/gi, w: 5, n: 'OR Tautology' },
-      { r: /(;\s*(drop|delete|insert|update|exec))/gi, w: 5, n: 'Piggyback' },
-      { r: /(information_schema|sys\.|sysobjects)/gi, w: 4, n: 'Schema Probe' },
-      { r: /(waitfor\s+delay|sleep\s*\(|benchmark\s*\()/gi, w: 4, n: 'Time-based' },
-      { r: /(@@version|@@servername|version\s*\(\))/gi, w: 3, n: 'Info Gathering' },
-      { r: /(\/\*.*?\*\/)/gi, w: 2, n: 'Comment Block' },
-      { r: /(--\s*$|#\s*$)/gm, w: 3, n: 'Line Comment' },
-      { r: /(having\s+\d+\s*=\s*\d+)/gi, w: 4, n: 'HAVING' },
-      { r: /(load_file|into\s+(out|dump)file)/gi, w: 5, n: 'File Access' },
-      { r: /'\s*(or|and)\s+\d+\s*=\s*\d+/gi, w: 4, n: 'Numeric Tautology' },
-      { r: /(\bunion\b|\bselect\b|\binsert\b|\bupdate\b|\bdelete\b|\bdrop\b|\balter\b|\bcreate\b)/gi, w: 2, n: 'SQL Keyword' }
-    ];
-    this.tp = [];
-  }
-  refresh() { this.tp = D.ds.filter(d => d.l === 'sqli').map(d => d.i.toLowerCase()); }
-  check(inp) {
-    if (!inp || !inp.trim()) return { bad: false, conf: 0, th: [], risk: 'none', sc: 0 };
-    let sc = 0, th = [];
-    const lo = inp.toLowerCase();
-    for (const p of this.pats) {
-      const m = inp.match(p.r);
-      if (m) { sc += p.w * m.length; if (!th.includes(p.n)) th.push(p.n); }
-    }
-    for (const t of this.tp) {
-      if (lo.includes(t) || this.sim(lo, t) > 0.7) { sc += 3; if (!th.includes('ML Pattern')) th.push('ML Pattern'); }
-    }
-    if ((inp.match(/'/g) || []).length > 1) sc += 2;
-    if (inp.includes(';')) sc += 1;
-    const cf = Math.min(sc / 22 * 100, 99.9);
-    let rk = 'none';
-    if (cf > 80) rk = 'critical';
-    else if (cf > 50) rk = 'high';
-    else if (cf > 25) rk = 'medium';
-    else if (cf > 10) rk = 'low';
-    return { bad: cf > 30, conf: +(cf.toFixed(1)), th, risk: rk, sc };
-  }
-  sim(a, b) {
-    if (a === b) return 1;
-    const l = a.length > b.length ? a : b, s = a.length > b.length ? b : a;
-    if (!l.length) return 1;
-    return (l.length - this.ed(l, s)) / l.length;
-  }
-  ed(a, b) {
-    const m = [];
-    for (let i = 0; i <= b.length; i++) {
-      m[i] = [i];
-      for (let j = 1; j <= a.length; j++) {
-        m[i][j] = i === 0 ? j : Math.min(m[i - 1][j] + 1, m[i][j - 1] + 1, m[i - 1][j - 1] + (a[j - 1] === b[i - 1] ? 0 : 1));
-      }
-    }
-    return m[b.length][a.length];
-  }
-}
-const ML = new SQLD();
-
-// =============== UTILS ===============
-function h(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); }
-function toast(m, t = 'ok') {
-  const e = document.createElement('div');
-  e.className = 'toast t-' + t;
-  e.textContent = m;
-  document.getElementById('TW').appendChild(e);
-  setTimeout(() => e.remove(), 3200);
-}
-function rip() { return `${1 + Math.random() * 222 | 0}.${Math.random() * 255 | 0}.${Math.random() * 255 | 0}.${1 + Math.random() * 253 | 0}`; }
-
-// =============== API HELPERS ===============
-async function api(endpoint, method = 'GET', data = null) {
-  const opts = { method, headers: { 'Content-Type': 'application/json' } };
-  if (data) opts.body = JSON.stringify(data);
-  const res = await fetch(API + endpoint, opts);
-  return res.json();
-}
-
-// =============== INIT ===============
+// =============== INITIALIZATION ===============
 async function init() {
-  try {
-    const data = await api('/api/init');
-    D.users = data.users;
-    D.prods = data.prods;
-    D.logs = data.logs;
-    D.orders = data.orders;
-    D.ds = data.dataset;
-    D.ml = data.ml;
-    ML.refresh();
-    document.getElementById('loading').style.display = 'none';
-    rCats();
-    rProds();
-  } catch (e) {
-    console.error('Init error:', e);
-    toast('Database connection failed!', 'err');
-    document.getElementById('loading').innerHTML = '<p>⚠️ Cannot connect to database.<br>Make sure server is running.</p>';
-  }
+    try {
+        const data = await fetch(API + '/api/init').then(res => res.json());
+        D.prods = data.prods;
+        D.logs = data.logs;
+        document.getElementById('loading').style.display = 'none';
+        renderProducts();
+    } catch (e) {
+        toast('Failed to connect to server', 'err');
+    }
 }
 
-// =============== AUTH ===============
-function authTab(t) {
-  document.querySelectorAll('.auth-tabs button').forEach((b, i) => { b.classList.toggle('on', t === 'login' ? i === 0 : i === 1); });
-  document.getElementById('loginF').classList.toggle('hidden', t !== 'login');
-  document.getElementById('regF').classList.toggle('hidden', t === 'login');
-  document.getElementById('authMsg').className = 'alert-box';
-}
+// =============== SQLI CLIENT-SIDE MONITOR ===============
+const checkSQLi = (input) => {
+    const patterns = [/' OR '1'='1/, /UNION SELECT/i, /DROP TABLE/i, /<script>/i];
+    const isBad = patterns.some(p => p.test(input));
+    return {
+        bad: isBad,
+        input: input,
+        threats: isBad ? ['Pattern Match'] : [],
+        risk: isBad ? 'high' : 'none',
+        confidence: isBad ? 99 : 0
+    };
+};
 
+// =============== AUTH FUNCTIONS ===============
 async function doLogin() {
-  const em = document.getElementById('lEmail').value.trim();
-  const pw = document.getElementById('lPass').value;
-  const al = document.getElementById('authMsg');
-  
-  const a1 = ML.check(em), a2 = ML.check(pw);
-  if (a1.bad || a2.bad) {
-    const x = a1.bad ? a1 : a2;
-    const y = a1.bad ? em : pw;
-    await api('/api/admin/logs', 'POST', {
-      t: new Date().toLocaleString(), ip: rip(), inp: y, tp: x.th.join(', '), sev: x.risk, st: 'blocked', conf: x.conf
-    });
-    D.logs.unshift({ id: D.logs.length + 1, t: new Date().toLocaleString(), ip: rip(), inp: y, tp: x.th.join(', '), sev: x.risk, st: 'blocked', conf: x.conf });
-    al.className = 'alert-box err';
-    al.textContent = '⚠️ SQL Injection detected & blocked! Incident logged.';
-    return;
-  }
-  
-  if (!em || !pw) { al.className = 'alert-box err'; al.textContent = 'Please fill in all fields.'; return; }
-  
-  const result = await api('/api/login', 'POST', { email: em, password: pw, sqliCheck: null });
-  if (!result.success) { al.className = 'alert-box err'; al.textContent = result.error; return; }
-  
-  D.me = result.user;
-  document.getElementById('authPage').classList.add('hidden');
-  document.getElementById('APP').classList.remove('hidden');
-  if (D.me.role === 'admin') document.getElementById('admLink').classList.remove('hidden');
-  go('home');
-  toast('Welcome, ' + D.me.name + '! 🎉');
+    const email = document.getElementById('lEmail').value;
+    const password = document.getElementById('lPass').value;
+    const msg = document.getElementById('authMsg');
+
+    const sqliCheck = checkSQLi(email + password);
+
+    const res = await fetch(API + '/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, password, sqliCheck })
+    }).then(r => r.json());
+
+    if (res.success) {
+        D.me = res.user;
+        document.getElementById('authPage').classList.add('hidden');
+        document.getElementById('APP').classList.remove('hidden');
+        if (D.me.role === 'admin') document.getElementById('admLink').classList.remove('hidden');
+        toast('Logged in!');
+        go('home');
+    } else {
+        msg.className = 'alert-box err';
+        msg.textContent = res.error;
+    }
 }
 
 async function doRegister() {
-  const n = document.getElementById('rName').value.trim();
-  const e = document.getElementById('rEmail').value.trim();
-  const p = document.getElementById('rPass').value;
-  const ph = document.getElementById('rPhone').value.trim();
-  const al = document.getElementById('authMsg');
-  
-  if (!n || !e || !p) { al.className = 'alert-box err'; al.textContent = 'Fill all required fields.'; return; }
-  
-  const result = await api('/api/register', 'POST', { name: n, email: e, password: p, phone: ph });
-  if (!result.success) { al.className = 'alert-box err'; al.textContent = result.error; return; }
-  
-  // Refresh users from DB
-  D.users = (await api('/api/admin/users')).users || (await api('/api/init')).users;
-  
-  al.className = 'alert-box ok';
-  al.textContent = 'Account created! Login now.';
-  authTab('login');
-  document.getElementById('lEmail').value = e;
+    const data = {
+        name: document.getElementById('rName').value,
+        email: document.getElementById('rEmail').value,
+        password: document.getElementById('rPass').value,
+        phone: document.getElementById('rPhone').value
+    };
+
+    const res = await fetch(API + '/api/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    }).then(r => r.json());
+
+    if(res.success) {
+        toast('Registered! Please login.');
+        authTab('login');
+    } else {
+        alert(res.error);
+    }
 }
 
-function logout() {
-  D.me = null;
-  D.cart = [];
-  if (MIV) clearInterval(MIV);
-  document.getElementById('APP').classList.add('hidden');
-  document.getElementById('authPage').classList.remove('hidden');
-  document.getElementById('admLink').classList.add('hidden');
-  document.getElementById('lEmail').value = '';
-  document.getElementById('lPass').value = '';
-  document.getElementById('authMsg').className = 'alert-box';
+// =============== UI NAVIGATION ===============
+function go(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    document.getElementById('PG_' + page).classList.remove('hidden');
 }
 
-// =============== NAV ===============
-function go(p) {
-  ['home', 'shop', 'cart', 'checkout', 'profile', 'admin'].forEach(x => document.getElementById('PG_' + x).classList.add('hidden'));
-  document.getElementById('PG_' + p).classList.remove('hidden');
-  document.getElementById('NL').classList.remove('show');
-  if (MIV) { clearInterval(MIV); MIV = null; }
-  if (p === 'home' || p === 'shop') { cat = 'all'; rCats(); rProds(); }
-  if (p === 'cart') rCart();
-  if (p === 'profile') rProf();
-  if (p === 'admin') admGo('overview', document.querySelector('[data-t="overview"]'));
+function authTab(tab) {
+    document.getElementById('loginF').classList.toggle('hidden', tab !== 'login');
+    document.getElementById('regF').classList.toggle('hidden', tab !== 'register');
 }
 
-// =============== PRODUCTS ===============
-function rCats() {
-  const cs = ['all', 'smartwatch', 'earbuds', 'earphones', 'speaker', 'charger'];
-  const ic = { all: '🔥', smartwatch: '⌚', earbuds: '🎧', earphones: '🎵', speaker: '🔊', charger: '🔋' };
-  const htm = cs.map(c => `<span class="cat${cat === c ? ' on' : ''}" onclick="cat='${c}';rCats();rProds()">${ic[c]} ${c === 'all' ? 'All' : c[0].toUpperCase() + c.slice(1) + 's'}</span>`).join('');
-  const a = document.getElementById('HC'), b = document.getElementById('SC');
-  if (a) a.innerHTML = htm;
-  if (b) b.innerHTML = htm;
+function renderProducts() {
+    const grid = document.getElementById('HG');
+    grid.innerHTML = D.prods.map(p => `
+        <div class="pcard">
+            <div class="pcard-img">${p.e}</div>
+            <div class="pcard-body">
+                <h3>${p.n}</h3>
+                <p class="price">₹${p.p.toLocaleString()}</p>
+                <button class="atc-btn" onclick="addCart(${p.id})">Add to Cart</button>
+            </div>
+        </div>
+    `).join('');
 }
 
-function rProds() {
-  const q = (document.getElementById('SQ')?.value || '').toLowerCase();
-  let ps = D.prods;
-  if (cat !== 'all') ps = ps.filter(p => p.c === cat);
-  if (q) ps = ps.filter(p => p.n.toLowerCase().includes(q) || p.d.toLowerCase().includes(q));
-  
-  const htm = ps.length ? ps.map(p => {
-    const dc = Math.round((1 - p.p / p.o) * 100);
-    return `<div class="pcard" onclick="pModal(${p.id})"><div class="pcard-img">${p.e}</div><div class="pcard-body">
-    <h3>${p.n}</h3><div class="stars">${'⭐'.repeat(Math.floor(p.r))} ${p.r}</div>
-    <div><span class="price">₹${p.p.toLocaleString()}</span><span class="oldp">₹${p.o.toLocaleString()}</span><span class="disc">${dc}% OFF</span></div>
-    <button class="atc-btn" onclick="event.stopPropagation();addC(${p.id})">Add to Cart 🛒</button></div></div>`;
-  }).join('') : '<p style="text-align:center;color:var(--gy);grid-column:1/-1;padding:50px;font-size:1.1em">No products found 😔</p>';
-  
-  const a = document.getElementById('HG'), b = document.getElementById('SG');
-  if (a && !document.getElementById('PG_home').classList.contains('hidden')) a.innerHTML = htm;
-  if (b && !document.getElementById('PG_shop').classList.contains('hidden')) b.innerHTML = htm;
+function addCart(id) {
+    D.cart.push(id);
+    document.getElementById('CB').textContent = D.cart.length;
+    toast('Added to cart');
 }
 
-function pModal(id) {
-  const p = D.prods.find(x => x.id === id);
-  if (!p) return;
-  const dc = Math.round((1 - p.p / p.o) * 100);
-  const m = document.createElement('div');
-  m.className = 'modal-bg';
-  m.onclick = e => { if (e.target === m) m.remove(); };
-  m.innerHTML = `<div class="modal-box"><button class="modal-x" onclick="this.closest('.modal-bg').remove()">✕</button>
-  <div style="text-align:center;font-size:5.5em;margin:10px 0">${p.e}</div>
-  <h3>${p.n}</h3><div style="margin:6px 0;color:#f39c12">${'⭐'.repeat(Math.floor(p.r))} ${p.r}/5</div>
-  <p style="color:var(--gy);margin:10px 0">${p.d}</p>
-  <div style="margin:16px 0"><span style="font-size:1.6em;font-weight:800;color:var(--pri)">₹${p.p.toLocaleString()}</span>
-  <span class="oldp" style="font-size:1em">₹${p.o.toLocaleString()}</span>
-  <span class="disc" style="font-size:.85em;margin-left:8px">${dc}% OFF</span></div>
-  <p style="font-size:.84em;color:var(--gy)">📦 In Stock: ${p.s} units</p>
-  <button class="btn bp btn-full" style="margin-top:16px" onclick="addC(${p.id});this.closest('.modal-bg').remove()">Add to Cart 🛒</button>
-  </div>`;
-  document.body.appendChild(m);
-}
-
-// =============== CART ===============
-function addC(id) { const c = D.cart.find(x => x.id === id); if (c) c.q++; else D.cart.push({ id, q: 1 }); uCB(); toast('Added to cart! 🛒'); }
-function uCB() { document.getElementById('CB').textContent = D.cart.reduce((s, c) => s + c.q, 0); }
-
-function rCart() {
-  const cl = document.getElementById('CL'), cs = document.getElementById('CS');
-  if (!D.cart.length) {
-    cl.innerHTML = `<div style="text-align:center;padding:60px"><p style="font-size:4em">🛒</p><h3 style="margin:12px 0">Your cart is empty</h3><button class="btn bp" onclick="go('shop')">Shop Now 🛍️</button></div>`;
-    cs.innerHTML = '';
-    return;
-  }
-  cl.innerHTML = D.cart.map(c => {
-    const p = D.prods.find(x => x.id === c.id);
-    return `<div class="ci"><div class="ci-emoji">${p.e}</div>
-    <div class="ci-info"><h3>${p.n}</h3><div class="price">₹${p.p.toLocaleString()}</div>
-    <div class="qty"><button onclick="cq(${c.id},-1)">−</button><span>${c.q}</span><button onclick="cq(${c.id},1)">+</button></div></div>
-    <span class="ci-rm" onclick="rc(${c.id})">🗑️</span></div>`;
-  }).join('');
-  
-  const sub = D.cart.reduce((s, c) => { const p = D.prods.find(x => x.id === c.id); return s + p.p * c.q; }, 0);
-  const sh = sub > 2000 ? 0 : 99, tx = Math.round(sub * .18), tot = sub + sh + tx;
-  cs.innerHTML = `<h3>Order Summary</h3><div class="srow"><span>Subtotal</span><span>₹${sub.toLocaleString()}</span></div>
-  <div class="srow"><span>Shipping</span><span>${sh ? '₹' + sh : 'FREE'}</span></div>
-  <div class="srow"><span>Tax (18% GST)</span><span>₹${tx.toLocaleString()}</span></div>
-  <div class="srow total"><span>Total</span><span>₹${tot.toLocaleString()}</span></div>
-  <button class="btn bp btn-full" style="margin-top:16px" onclick="sCO()">Proceed to Checkout 📦</button>`;
-}
-
-function cq(id, d) { const c = D.cart.find(x => x.id === id); if (c) { c.q += d; if (c.q <= 0) D.cart = D.cart.filter(x => x.id !== id); } uCB(); rCart(); }
-function rc(id) { D.cart = D.cart.filter(x => x.id !== id); uCB(); rCart(); toast('Removed', 'err'); }
-
-// =============== CHECKOUT ===============
-function sCO() { if (!D.cart.length) return toast('Cart empty', 'err'); D.coStep = 1; D.coData = {}; go('checkout'); rCO(); }
-
-function rCO() {
-  document.getElementById('COsteps').innerHTML = [['1. Address'], ['2. Payment'], ['3. Confirm']].map(([l], i) => `<span class="step${i < D.coStep ? ' on' : ''}${i < D.coStep - 1 ? ' done' : ''}">${l}</span>`).join('');
-  const f = document.getElementById('COform');
-  
-  if (D.coStep === 1) {
-    f.innerHTML = `<h3>📍 Shipping Address</h3>
-    <div class="field"><label>Full Name</label><input id="cn" value="${D.me?.name || ''}"></div>
-    <div class="row2"><div class="field"><label>Phone</label><input id="cp" value="${D.me?.phone || ''}"></div><div class="field"><label>Pincode</label><input id="cz" placeholder="6-digit"></div></div>
-    <div class="field"><label>Address</label><input id="ca" placeholder="House/Street/Area"></div>
-    <div class="row2"><div class="field"><label>City</label><input id="cc"></div><div class="field"><label>State</label><input id="cs"></div></div>
-    <button class="btn bp btn-full" onclick="nCO()">Continue to Payment →</button>`;
-  } else if (D.coStep === 2) {
-    f.innerHTML = `<h3>💳 Payment Details</h3>
-    <div class="field"><label>Card Number</label><input id="xc" placeholder="1234 5678 9012 3456" maxlength="19" oninput="this.value=this.value.replace(/\\D/g,'').replace(/(\\d{4})/g,'$1 ').trim()"></div>
-    <div class="row2"><div class="field"><label>Expiry</label><input id="xe" placeholder="MM/YY" maxlength="5"></div><div class="field"><label>CVV</label><input id="xv" type="password" placeholder="123" maxlength="3"></div></div>
-    <div class="field"><label>Cardholder Name</label><input id="xn"></div>
-    <div style="display:flex;gap:12px;margin-top:16px"><button class="btn bs" onclick="D.coStep=1;rCO()">← Back</button><button class="btn bp" style="flex:1" onclick="nCO()">Review Order →</button></div>`;
-  } else {
-    const sub = D.cart.reduce((s, x) => { const p = D.prods.find(y => y.id === x.id); return s + p.p * x.q; }, 0);
-    const sh = sub > 2000 ? 0 : 99, tx = Math.round(sub * .18), tot = sub + sh + tx;
-    f.innerHTML = `<h3>📋 Order Review</h3>
-    <div style="background:var(--bg);padding:16px;border-radius:12px;margin-bottom:14px"><h4>📍 Ship To</h4><p style="margin-top:6px">${D.coData.n}<br>${D.coData.a}<br>${D.coData.c}, ${D.coData.s} ${D.coData.z}<br>📞 ${D.coData.p}</p></div>
-    <div style="background:var(--bg);padding:16px;border-radius:12px;margin-bottom:14px"><h4>💳 Payment</h4><p style="margin-top:6px">Card ****${(D.coData.card || '').replace(/\s/g, '').slice(-4)}</p></div>
-    <div style="background:var(--bg);padding:16px;border-radius:12px;margin-bottom:14px"><h4>📦 Items (${D.cart.reduce((s, c) => s + c.q, 0)})</h4>
-    ${D.cart.map(x => { const p = D.prods.find(y => y.id === x.id); return `<div style="display:flex;justify-content:space-between;margin:5px 0"><span>${p.e} ${p.n} × ${x.q}</span><span>₹${(p.p * x.q).toLocaleString()}</span></div>`; }).join('')}
-    <div style="border-top:2px solid var(--lt);margin-top:10px;padding-top:10px;font-weight:800;display:flex;justify-content:space-between"><span>Total</span><span>₹${tot.toLocaleString()}</span></div></div>
-    <div style="display:flex;gap:12px"><button class="btn bs" onclick="D.coStep=2;rCO()">← Back</button><button class="btn bg" style="flex:1" onclick="placeOrd()">✅ Place Order</button></div>`;
-  }
-}
-
-function nCO() {
-  if (D.coStep === 1) {
-    const fs = ['cn', 'cp', 'ca', 'cc', 'cs'];
-    if (fs.some(x => !document.getElementById(x)?.value.trim())) return toast('Fill all fields', 'err');
-    D.coData = { n: document.getElementById('cn').value, p: document.getElementById('cp').value, z: document.getElementById('cz').value, a: document.getElementById('ca').value, c: document.getElementById('cc').value, s: document.getElementById('cs').value };
-  } else if (D.coStep === 2) {
-    if (!document.getElementById('xc')?.value || !document.getElementById('xe')?.value || !document.getElementById('xv')?.value) return toast('Fill payment info', 'err');
-    D.coData.card = document.getElementById('xc').value;
-  }
-  D.coStep++;
-  rCO();
-}
-
-async function placeOrd() {
-  const oid = 'TB' + Date.now().toString(36).toUpperCase();
-  const items = D.cart.map(c => ({ id: c.id, q: c.q }));
-  
-  const result = await api('/api/orders', 'POST', { uid: D.me.id, items: items });
-  
-  D.orders.unshift({ id: oid, uid: D.me.id, items: [...D.cart], date: new Date().toLocaleString(), st: 'confirmed' });
-  if (D.me) D.me.orders++;
-  D.cart = [];
-  uCB();
-  
-  document.getElementById('COform').innerHTML = `<div class="co-success"><div class="icon">✅</div><h2>Order Placed Successfully!</h2><p style="color:var(--gy);margin:12px 0">Order ID: <strong>${oid}</strong></p><button class="btn bp" style="margin-top:20px" onclick="go('home')">Continue Shopping 🛍️</button></div>`;
-  toast('Order placed! 🎉');
-}
-
-// =============== PROFILE ===============
-async function rProf() {
-  const u = D.me;
-  if (!u) return;
-  
-  const orders = await api('/api/orders/' + u.id);
-  
-  document.getElementById('PRF').innerHTML = `
-  <div class="prof-head"><div class="avatar">👤</div><h2>${u.name}</h2><p style="color:var(--gy)">${u.email}</p>
-  <span class="badge ${u.role === 'admin' ? 'b-yel' : 'b-blu'}">${u.role.toUpperCase()}</span></div>
-  <div class="prof-sec"><h3>📝 Personal Information</h3>
-  <div class="field"><label>Name</label><input id="pn" value="${u.name}"></div>
-  <div class="field"><label>Email</label><input value="${u.email}" disabled style="background:#f5f6fa"></div>
-  <div class="field"><label>Phone</label><input id="pp" value="${u.phone || ''}"></div>
-  <div class="field"><label>Address</label><textarea id="pa" rows="2">${u.addr || ''}</textarea></div>
-  <button class="btn bp" onclick="saveProfile()">💾 Save Changes</button></div>
-  <div class="prof-sec"><h3>📦 Order History (${orders.length})</h3>
-  ${orders.length ? orders.map(o => `<div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid var(--lt)"><div><strong>${o.id}</strong><br><span style="font-size:.78em;color:var(--gy)">${o.date}</span></div><span class="badge b-grn">${o.st}</span></div>`).join('') : '<p style="color:var(--gy);padding:10px">No orders yet.</p>'}</div>`;
-}
-
-async function saveProfile() {
-  const name = document.getElementById('pn').value;
-  const phone = document.getElementById('pp').value;
-  const addr = document.getElementById('pa').value;
-  
-  await api('/api/user/' + D.me.id, 'PUT', { name, phone, addr });
-  D.me.name = name;
-  D.me.phone = phone;
-  D.me.addr = addr;
-  toast('Profile saved! ✅');
-}
-
-// =============== ADMIN ===============
+// =============== ADMIN PANEL ===============
 async function admGo(tab, el) {
-  if (MIV) { clearInterval(MIV); MIV = null; }
-  document.querySelectorAll('.adm-side a').forEach(a => a.classList.remove('on'));
-  if (el) el.classList.add('on');
-  document.getElementById('ASIDE').classList.remove('show');
-  
-  const c = document.getElementById('ADM');
-  const tb = document.getElementById('TB');
-  if (tb) tb.textContent = D.logs.filter(l => l.st === 'blocked').length;
-  
-  // Refresh data from server
-  D.logs = await api('/api/admin/logs');
-  D.users = await api('/api/admin/users');
-  D.ml = await api('/api/admin/ml');
-  D.ds = await api('/api/admin/dataset');
-  ML.refresh();
-  
-  if (tab === 'overview') admOverview(c);
-  else if (tab === 'users') admUsers(c);
-  else if (tab === 'logs') admLogs(c);
-  else if (tab === 'monitor') admMonitor(c);
-  else if (tab === 'training') admTrain(c);
-  else if (tab === 'dataset') admDS(c);
-}
-
-// --- OVERVIEW ---
-function admOverview(c) {
-  const bl = D.logs.filter(l => l.st === 'blocked'), al = D.logs.filter(l => l.st === 'allowed'), cr = bl.filter(l => l.sev === 'critical');
-  const tc = {};
-  bl.forEach(l => l.tp.split(',').forEach(t => { t = t.trim(); if (t) tc[t] = (tc[t] || 0) + 1; }));
-  
-  c.innerHTML = `<h2>📊 Security Overview Dashboard</h2>
-  <div class="stat-cards">
-  <div class="scard"><div class="sicon">👥</div><div class="sval">${D.users.length}</div><div class="slbl">Total Users</div></div>
-  <div class="scard" style="border-left:4px solid var(--red)"><div class="sicon">🛡️</div><div class="sval">${bl.length}</div><div class="slbl">Attacks Blocked</div></div>
-  <div class="scard" style="border-left:4px solid var(--grn)"><div class="sicon">✅</div><div class="sval">${al.length}</div><div class="slbl">Normal Requests</div></div>
-  <div class="scard" style="border-left:4px solid #e17055"><div class="sicon">🔴</div><div class="sval">${cr.length}</div><div class="slbl">Critical Threats</div></div>
-  <div class="scard" style="border-left:4px solid var(--sec)"><div class="sicon">🧠</div><div class="sval">${D.ml.acc}%</div><div class="slbl">ML Accuracy</div></div>
-  <div class="scard" style="border-left:4px solid var(--yel)"><div class="sicon">📦</div><div class="sval">${D.orders.length}</div><div class="slbl">Orders</div></div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
-  <div class="panel"><h3>📈 Attack Types</h3><div id="ATB"></div></div>
-  <div class="panel"><h3>🔴 Recent Threats</h3><div style="max-height:300px;overflow-y:auto" id="RT"></div></div>
-  </div>
-  <div class="panel"><h3>📡 Live Threat & Normal Feed</h3><div class="monitor" id="OF" style="height:220px"></div></div>`;
-  
-  const mx = Math.max(...Object.values(tc), 1);
-  document.getElementById('ATB').innerHTML = Object.entries(tc).sort((a, b) => b[1] - a[1]).map(([k, v]) => `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-  <span style="min-width:120px;font-size:.8em;text-align:right;color:var(--gy)">${k}</span>
-  <div style="flex:1;background:var(--lt);border-radius:6px;height:24px;overflow:hidden"><div style="height:100%;width:${v / mx * 100}%;background:linear-gradient(90deg,var(--red),#e17055);border-radius:6px;display:flex;align-items:center;padding-left:10px;color:#fff;font-size:.75em;font-weight:700">${v}</div></div></div>`).join('');
-  
-  document.getElementById('RT').innerHTML = bl.slice(0, 8).map(l => `<div style="padding:10px;border-bottom:1px solid var(--lt);font-size:.84em">
-  <div style="display:flex;justify-content:space-between"><strong style="color:var(--red)">${l.tp}</strong><span class="badge ${l.sev === 'critical' ? 'b-crit' : 'b-red'}">${l.sev}</span></div>
-  <div style="color:var(--gy);font-size:.78em">${l.t} · ${l.ip}</div><code style="font-size:.75em;word-break:break-all">${h(l.inp)}</code></div>`).join('');
-  
-  startFeed('OF');
-}
-
-function startFeed(id) {
-  const f = document.getElementById(id);
-  if (!f) return;
-  const sa = [
-    { i: 'user@test.com' }, { i: "' OR 1=1--" }, { i: 'normaluser' }, { i: "'; DROP TABLE--" },
-    { i: 'search' }, { i: "admin' UNION SELECT--" }, { i: 'login_ok' }, { i: "' HAVING 1=1--" },
-    { i: 'checkout' }, { i: "'; EXEC xp_cmdshell--" }
-  ];
-  MIV = setInterval(() => {
-    const s = sa[Math.random() * sa.length | 0];
-    const r = ML.check(s.i);
-    const t = new Date().toLocaleTimeString();
-    const e = document.createElement('div');
-    e.className = 'entry ' + (r.bad ? 'threat' : 'safe');
-    e.innerHTML = `[${t}] ${r.bad ? '⛔ BLOCKED' : '✅ ALLOWED'} | ${r.conf}% | ${h(s.i)}`;
-    f.prepend(e);
-    if (f.children.length > 60) f.lastChild.remove();
-  }, 2000);
-}
-
-// --- USERS ---
-function admUsers(c) {
-  c.innerHTML = `<h2>👥 User Management</h2>
-  <div class="stat-cards">
-  <div class="scard"><div class="sval">${D.users.length}</div><div class="slbl">Total Users</div></div>
-  <div class="scard"><div class="sval">${D.users.filter(u => u.status === 'active').length}</div><div class="slbl">Active</div></div>
-  <div class="scard"><div class="sval">${D.users.filter(u => u.status === 'suspended').length}</div><div class="slbl">Suspended</div></div>
-  <div class="scard"><div class="sval">${D.users.filter(u => u.role === 'admin').length}</div><div class="slbl">Admins</div></div>
-  </div>
-  <div class="fbar"><button class="btn btn-sm bs" onclick="uTbl('all')">All</button><button class="btn btn-sm bg" onclick="uTbl('active')">Active</button><button class="btn btn-sm br" onclick="uTbl('suspended')">Suspended</button><button class="btn btn-sm bw" onclick="uTbl('admin')">Admins</button></div>
-  <div class="tw"><table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th>Joined</th><th>Orders</th><th>Actions</th></tr></thead><tbody id="UTB"></tbody></table></div>`;
-  uTbl('all');
-}
-
-function uTbl(f) {
-  let us = D.users;
-  if (f === 'active') us = us.filter(u => u.status === 'active');
-  else if (f === 'suspended') us = us.filter(u => u.status === 'suspended');
-  else if (f === 'admin') us = us.filter(u => u.role === 'admin');
-  
-  document.getElementById('UTB').innerHTML = us.map(u => `<tr><td>#${u.id}</td><td>${u.name}</td><td>${u.email}</td><td>${u.phone || '-'}</td>
-  <td><span class="badge ${u.role === 'admin' ? 'b-yel' : 'b-blu'}">${u.role}</span></td>
-  <td><span class="badge ${u.status === 'active' ? 'b-grn' : 'b-red'}">${u.status}</span></td>
-  <td>${u.joined}</td><td>${u.orders}</td>
-  <td style="white-space:nowrap"><button class="btn btn-sm ${u.status === 'active' ? 'br' : 'bg'}" onclick="tSt(${u.id})">${u.status === 'active' ? 'Suspend' : 'Activate'}</button>
-  ${u.id !== 1 ? `<button class="btn btn-sm bw" style="margin-left:4px" onclick="tRl(${u.id})">${u.role === 'admin' ? 'Demote' : 'Promote'}</button>` : ''}
-  <button class="btn btn-sm bs" style="margin-left:4px" onclick="vU(${u.id})">👁️</button></td></tr>`).join('');
-}
-
-async function tSt(id) {
-  const u = D.users.find(x => x.id === id);
-  if (!u || u.id === 1) return;
-  const newStatus = u.status === 'active' ? 'suspended' : 'active';
-  await api('/api/admin/users/' + id + '/status', 'PUT', { status: newStatus });
-  u.status = newStatus;
-  toast(u.name + ' ' + newStatus);
-  admUsers(document.getElementById('ADM'));
-}
-
-async function tRl(id) {
-  const u = D.users.find(x => x.id === id);
-  if (!u || u.id === 1) return;
-  const newRole = u.role === 'admin' ? 'user' : 'admin';
-  await api('/api/admin/users/' + id + '/role', 'PUT', { role: newRole });
-  u.role = newRole;
-  toast(u.name + ' → ' + newRole);
-  admUsers(document.getElementById('ADM'));
-}
-
-function vU(id) {
-  const u = D.users.find(x => x.id === id);
-  if (!u) return;
-  const m = document.createElement('div');
-  m.className = 'modal-bg';
-  m.onclick = e => { if (e.target === m) m.remove(); };
-  m.innerHTML = `<div class="modal-box"><button class="modal-x" onclick="this.closest('.modal-bg').remove()">✕</button><h3>👤 User #${u.id}</h3>
-  <div style="display:grid;gap:10px;font-size:.92em"><p><strong>Name:</strong> ${u.name}</p><p><strong>Email:</strong> ${u.email}</p><p><strong>Phone:</strong> ${u.phone || '-'}</p>
-  <p><strong>Role:</strong> <span class="badge ${u.role === 'admin' ? 'b-yel' : 'b-blu'}">${u.role}</span></p><p><strong>Status:</strong> <span class="badge ${u.status === 'active' ? 'b-grn' : 'b-red'}">${u.status}</span></p>
-  <p><strong>Joined:</strong> ${u.joined}</p><p><strong>Address:</strong> ${u.addr || '-'}</p><p><strong>Orders:</strong> ${u.orders}</p></div></div>`;
-  document.body.appendChild(m);
-}
-
-// --- ATTACK LOGS ---
-function admLogs(c) {
-  const bl = D.logs.filter(l => l.st === 'blocked'), cr = bl.filter(l => l.sev === 'critical');
-  c.innerHTML = `<h2>📋 SQL Injection Attack Logs</h2>
-  <div class="stat-cards">
-  <div class="scard" style="border-left:4px solid var(--red)"><div class="sval">${bl.length}</div><div class="slbl">Blocked</div></div>
-  <div class="scard" style="border-left:4px solid #e17055"><div class="sval">${cr.length}</div><div class="slbl">Critical</div></div>
-  <div class="scard" style="border-left:4px solid var(--grn)"><div class="sval">${D.logs.filter(l => l.st === 'allowed').length}</div><div class="slbl">Normal</div></div>
-  <div class="scard" style="border-left:4px solid var(--pri)"><div class="sval">${D.logs.length}</div><div class="slbl">Total</div></div>
-  </div>
-  <div class="fbar"><button class="btn btn-sm bs" onclick="fLog('all')">All</button><button class="btn btn-sm br" onclick="fLog('blocked')">Blocked</button><button class="btn btn-sm bg" onclick="fLog('allowed')">Allowed</button><button class="btn btn-sm bw" onclick="fLog('critical')">Critical</button></div>
-  <div class="tw"><table><thead><tr><th>#</th><th>Time</th><th>IP</th><th>Input</th><th>Type</th><th>Severity</th><th>Status</th><th>Confidence</th></tr></thead><tbody id="LTB">${logRows(D.logs)}</tbody></table></div>`;
-}
-
-function logRows(ls) {
-  return ls.map(l => `<tr><td>${l.id}</td><td style="white-space:nowrap;font-size:.78em">${l.t}</td><td style="font-size:.8em">${l.ip}</td>
-  <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${h(l.inp)}"><code style="font-size:.78em">${h(l.inp)}</code></td>
-  <td style="font-size:.8em">${l.tp}</td>
-  <td><span class="badge ${l.sev === 'critical' ? 'b-crit' : l.sev === 'high' ? 'b-red' : l.sev === 'none' ? 'b-grn' : 'b-yel'}">${l.sev}</span></td>
-  <td><span class="badge ${l.st === 'blocked' ? 'b-red' : 'b-grn'}">${l.st}</span></td>
-  <td>${l.conf}%</td></tr>`).join('');
-}
-
-function fLog(f) {
-  let ls = D.logs;
-  if (f === 'blocked') ls = ls.filter(l => l.st === 'blocked');
-  else if (f === 'allowed') ls = ls.filter(l => l.st === 'allowed');
-  else if (f === 'critical') ls = ls.filter(l => l.sev === 'critical');
-  document.getElementById('LTB').innerHTML = logRows(ls);
-}
-
-// --- MONITOR ---
-function admMonitor(c) {
-  c.innerHTML = `<h2>🖥️ Live Threat Monitor</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
-  <div class="panel"><h3>🔍 Test SQLi Detection</h3>
-  <div class="field"><label>Enter input to analyze:</label><input id="TI" placeholder="Try: ' OR 1=1-- or normal text"></div>
-  <button class="btn bp" onclick="testML()">🔬 Analyze</button><div id="TR" style="margin-top:14px"></div></div>
-  <div class="panel"><h3>📊 Model Statistics</h3>
-  <div class="sgrid"><div class="sbox"><div class="sv" style="color:var(--pri)">${D.ml.acc}%</div><div class="sl">Accuracy</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--grn)">${D.ml.prec}%</div><div class="sl">Precision</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--sec)">${D.ml.rec}%</div><div class="sl">Recall</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--yel)">${D.ml.f1}</div><div class="sl">F1 Score</div></div></div>
-  <p style="margin-top:12px;font-size:.82em;color:var(--gy)">Samples: ${D.ml.samp} · Epochs: ${D.ml.ep} · Last: ${D.ml.last}</p></div></div>
-  <div class="panel"><h3>📡 Real-time Request Stream</h3>
-  <div style="display:flex;gap:14px;margin-bottom:10px;align-items:center"><div style="display:flex;align-items:center;gap:6px"><span style="width:10px;height:10px;background:var(--grn);border-radius:50%;animation:pulse 1.5s infinite"></span><span style="font-size:.84em;font-weight:600">Live</span></div>
-  <span style="font-size:.8em;color:var(--gy)" id="RC">Requests: 0</span></div>
-  <div class="monitor" id="LM"></div></div>`;
-  startLive();
-}
-
-async function testML() {
-  const inp = document.getElementById('TI').value;
-  if (!inp) return toast('Enter input', 'err');
-  const r = ML.check(inp);
-  const cl = r.bad ? 'var(--red)' : 'var(--grn)';
-  document.getElementById('TR').innerHTML = `<div style="padding:16px;border-radius:12px;border:2px solid ${cl};background:${r.bad ? '#fff5f5' : '#f0fff4'}">
-  <h4 style="color:${cl}">${r.bad ? '⚠️ SQL INJECTION DETECTED' : '✅ SAFE INPUT'}</h4>
-  <div style="margin-top:10px;font-size:.88em"><p><strong>Confidence:</strong> ${r.conf}%</p>
-  <p><strong>Risk:</strong> <span class="badge ${r.risk === 'critical' ? 'b-crit' : r.risk === 'high' ? 'b-red' : r.risk === 'medium' ? 'b-yel' : 'b-grn'}">${r.risk}</span></p>
-  ${r.th.length ? `<p><strong>Patterns:</strong> ${r.th.join(', ')}</p>` : ''}<p><strong>Score:</strong> ${r.sc}</p></div></div>`;
-  
-  // Save to database
-  await api('/api/admin/logs', 'POST', {
-    t: new Date().toLocaleString(), ip: '127.0.0.1', inp, tp: r.th.join(', ') || 'Normal', sev: r.risk, st: r.bad ? 'blocked' : 'allowed', conf: r.conf
-  });
-  D.logs.unshift({ id: D.logs.length + 1, t: new Date().toLocaleString(), ip: '127.0.0.1', inp, tp: r.th.join(', ') || 'Normal', sev: r.risk, st: r.bad ? 'blocked' : 'allowed', conf: r.conf });
-}
-
-function startLive() {
-  const m = document.getElementById('LM');
-  if (!m) return;
-  let reqN = 0;
-  const sa = [
-    { i: 'user@gmail.com' }, { i: "' OR '1'='1" }, { i: 'johndoe' }, { i: "admin' UNION SELECT *--" },
-    { i: 'test@mail.com' }, { i: 'P@ss!' }, { i: "'; DROP TABLE--" }, { i: 'jane' },
-    { i: "1' AND 1=1--" }, { i: 'checkout' }, { i: "' HAVING 1=1--" }, { i: 'browse' },
-    { i: "' WAITFOR DELAY '0:0:5'--" }, { i: 'search' }, { i: "'; EXEC xp_cmdshell--" }, { i: 'update' }
-  ];
-  MIV = setInterval(() => {
-    const s = sa[Math.random() * sa.length | 0];
-    const r = ML.check(s.i);
-    const t = new Date().toLocaleTimeString() + '.' + String(Date.now() % 1000).padStart(3, '0');
-    const e = document.createElement('div');
-    e.className = 'entry ' + (r.bad ? 'threat' : 'safe');
-    e.innerHTML = `[${t}] ${r.bad ? '⛔' : '✅'} ${rip()} | ${r.conf}% | ${r.risk.toUpperCase()} | "${h(s.i)}"${r.th.length ? ' → ' + r.th.join(', ') : ''}`;
-    m.prepend(e);
-    if (m.children.length > 100) m.lastChild.remove();
-    reqN++;
-    const rc = document.getElementById('RC');
-    if (rc) rc.textContent = 'Requests: ' + reqN;
-  }, 1300);
-}
-
-// --- TRAINING ---
-function admTrain(c) {
-  c.innerHTML = `<h2>🧠 Machine Learning Training Center</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
-  <div class="panel"><h3>⚙️ Model Configuration</h3>
-  <div class="field"><label>Algorithm</label><select id="mA"><option>Naive Bayes</option><option selected>Neural Network</option><option>Random Forest</option><option>SVM</option><option>Gradient Boosting</option><option>LSTM</option></select></div>
-  <div class="row2"><div class="field"><label>Epochs</label><input type="number" id="mE" value="50" min="10" max="500"></div><div class="field"><label>Learning Rate</label><input type="number" id="mL" value="0.001" step="0.0001"></div></div>
-  <div class="row2"><div class="field"><label>Batch Size</label><input type="number" id="mB" value="32"></div><div class="field"><label>Validation Split</label><input type="number" id="mV" value="0.2" step="0.05"></div></div>
-  <div style="display:flex;gap:10px;margin-top:12px"><button class="btn bp" onclick="trainML()" id="TB2">🚀 Start Training</button><button class="btn br" onclick="resetML()">🔄 Reset</button></div>
-  <div class="prog-bar" id="PW" style="display:none"><div class="fill" id="PB"></div></div>
-  <div id="TL" style="margin-top:10px;font-size:.8em;max-height:220px;overflow-y:auto;font-family:monospace;background:#1e272e;color:#7bed9f;padding:12px;border-radius:10px;display:none"></div></div>
-  <div class="panel"><h3>📊 Training Results</h3>
-  <div class="sgrid" style="margin-bottom:16px">
-  <div class="sbox"><div class="sv" style="color:var(--pri)">${D.ml.acc}%</div><div class="sl">Accuracy</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--grn)">${D.ml.prec}%</div><div class="sl">Precision</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--sec)">${D.ml.rec}%</div><div class="sl">Recall</div></div>
-  <div class="sbox"><div class="sv" style="color:var(--yel)">${D.ml.f1}</div><div class="sl">F1 Score</div></div></div>
-  <div style="font-size:.84em;color:var(--gy)"><p>📁 ${D.ds.length} samples (${D.ds.filter(d => d.l === 'sqli').length} SQLi · ${D.ds.filter(d => d.l === 'n').length} Normal)</p>
-  <p>🔄 ${D.ml.ep} epochs · Last: ${D.ml.last}</p>
-  <p>🎯 ${D.ml.ok ? '<span style="color:var(--grn)">Trained ✅</span>' : '<span style="color:var(--red)">Not trained ❌</span>'}</p></div>
-  <h4 style="margin-top:18px;margin-bottom:10px">📈 Loss Curve</h4>
-  <div id="LC" style="display:flex;align-items:flex-end;gap:2px;height:110px;background:var(--bg);border-radius:10px;padding:10px"></div></div></div>
-  <div class="panel"><h3>🧪 Cross-Validation</h3><div class="tw"><table><thead><tr><th>Fold</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr></thead><tbody>
-  ${[1, 2, 3, 4, 5].map(f => `<tr><td>Fold ${f}</td><td>${(93 + Math.random() * 6).toFixed(1)}%</td><td>${(94 + Math.random() * 5).toFixed(1)}%</td><td>${(92 + Math.random() * 6).toFixed(1)}%</td><td>${(.92 + Math.random() * .07).toFixed(2)}</td></tr>`).join('')}
-  </tbody></table></div></div>`;
-  
-  const lc = document.getElementById('LC');
-  if (lc) {
-    let s = '';
-    for (let i = 0; i < 30; i++) {
-      const v = 2.5 * Math.exp(-i * .12) + Math.random() * .08;
-      s += `<div style="flex:1;height:${Math.max(v / 2.5 * 100, 3)}%;background:linear-gradient(to top,var(--pri),var(--sec));border-radius:3px 3px 0 0;min-width:4px" title="Epoch ${i + 1}: ${v.toFixed(3)}"></div>`;
+    const container = document.getElementById('ADM');
+    if (tab === 'logs') {
+        const logs = await fetch(API + '/api/admin/logs').then(r => r.json());
+        container.innerHTML = `
+            <h3>Security Attack Logs</h3>
+            <table style="width:100%; margin-top:20px; border-collapse: collapse;">
+                <tr style="background:#2d3436; color:#fff">
+                    <th style="padding:10px">Time</th><th>IP</th><th>Input</th><th>Severity</th>
+                </tr>
+                ${logs.map(l => `
+                    <tr style="border-bottom:1px solid #ddd">
+                        <td style="padding:10px">${new Date(l.t).toLocaleTimeString()}</td>
+                        <td>${l.ip}</td>
+                        <td><code>${l.inp}</code></td>
+                        <td><span style="color:${l.sev === 'high' ? 'red' : 'green'}">${l.sev}</span></td>
+                    </tr>
+                `).join('')}
+            </table>
+        `;
     }
-    lc.innerHTML = s;
-  }
 }
 
-async function trainML() {
-  const btn = document.getElementById('TB2');
-  btn.disabled = true;
-  btn.textContent = '⏳ Training...';
-  document.getElementById('PW').style.display = 'block';
-  const bar = document.getElementById('PB');
-  const log = document.getElementById('TL');
-  log.style.display = 'block';
-  log.innerHTML = '';
-  
-  const ep = parseInt(document.getElementById('mE').value) || 50;
-  const algo = document.getElementById('mA').value;
-  let cur = 0;
-  
-  log.innerHTML += `[INFO] ${algo} · ${ep} epochs · ${D.ds.length} samples\n\n`;
-  
-  const iv = setInterval(() => {
-    cur++;
-    bar.style.width = Math.round(cur / ep * 100) + '%';
-    const loss = (2.5 * Math.exp(-cur * .08) + Math.random() * .05).toFixed(4);
-    const acc = (60 + 35 * (1 - Math.exp(-cur * .06)) + Math.random() * 2).toFixed(1);
-    
-    if (cur % 5 === 0 || cur === 1 || cur === ep) log.innerHTML += `Epoch ${String(cur).padStart(3)}: loss=${loss} acc=${acc}%\n`;
-    log.scrollTop = log.scrollHeight;
-    
-    if (cur >= ep) {
-      clearInterval(iv);
-      const newMl = {
-        ok: true,
-        acc: +(94 + Math.random() * 5).toFixed(1),
-        prec: +(95 + Math.random() * 4).toFixed(1),
-        rec: +(93 + Math.random() * 5).toFixed(1),
-        f1: +(0.93 + Math.random() * 0.06).toFixed(2),
-        ep,
-        samp: D.ds.length,
-        last: new Date().toISOString().split('T')[0]
-      };
-      
-      await api('/api/admin/ml', 'PUT', newMl);
-      D.ml = newMl;
-      ML.refresh();
-      
-      log.innerHTML += `\n✅ DONE! Acc:${D.ml.acc}% F1:${D.ml.f1}\n`;
-      btn.disabled = false;
-      btn.textContent = '🚀 Start Training';
-      toast('Training complete! 🧠');
-      setTimeout(() => admTrain(document.getElementById('ADM')), 1500);
-    }
-  }, 50);
+function toast(m, t='ok') {
+    const e = document.createElement('div');
+    e.className = `toast t-${t}`;
+    e.textContent = m;
+    document.getElementById('TW').appendChild(e);
+    setTimeout(() => e.remove(), 3000);
 }
 
-async function resetML() {
-  await api('/api/admin/ml', 'PUT', { ok: false, acc: 0, ep: 0, last: 'N/A', samp: 0, f1: 0, prec: 0, rec: 0 });
-  D.ml = { ok: false, acc: 0, ep: 0, last: 'N/A', samp: 0, f1: 0, prec: 0, rec: 0 };
-  toast('Model reset', 'warn');
-  admTrain(document.getElementById('ADM'));
-}
+function logout() { location.reload(); }
 
-// --- DATASET ---
-function admDS(c) {
-  const sq = D.ds.filter(d => d.l === 'sqli').length, nm = D.ds.filter(d => d.l === 'n').length;
-  c.innerHTML = `<h2>📁 Training Dataset Management</h2>
-  <div class="stat-cards">
-  <div class="scard"><div class="sval">${D.ds.length}</div><div class="slbl">Total Samples</div></div>
-  <div class="scard" style="border-left:4px solid var(--red)"><div class="sval">${sq}</div><div class="slbl">SQLi</div></div>
-  <div class="scard" style="border-left:4px solid var(--grn)"><div class="sval">${nm}</div><div class="slbl">Normal</div></div>
-  <div class="scard" style="border-left:4px solid var(--pri)"><div class="sval">${D.ds.length ? (sq / D.ds.length * 100).toFixed(0) + '%' : '0%'}</div><div class="slbl">SQLi Ratio</div></div></div>
-  <div class="panel" style="margin-bottom:20px"><h3>➕ Add Training Data</h3>
-  <div style="display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end">
-  <div class="field"><label>Input Pattern</label><input id="DI" placeholder="e.g. ' OR 1=1-- or normal@email.com"></div>
-  <div class="field"><label>Label</label><select id="DL"><option value="sqli">🔴 SQLi</option><option value="n">🟢 Normal</option></select></div>
-  <div class="field"><label>Category</label><select id="DC"><option>Tautology</option><option>Union</option><option>Piggyback</option><option>Comment</option><option>Blind</option><option>Time-based</option><option>Error-based</option><option>Command</option><option>Normal</option></select></div>
-  <button class="btn bg" onclick="addDS()">➕ Add</button></div></div>
-  <div class="panel" style="margin-bottom:20px"><h3>📋 Bulk Import</h3>
-  <div style="display:flex;gap:8px;flex-wrap:wrap">
-  <button class="btn btn-sm bw" onclick="bulkDS('taut')">+ Tautology</button>
-  <button class="btn btn-sm bw" onclick="bulkDS('union')">+ Union</button>
-  <button class="btn btn-sm bw" onclick="bulkDS('blind')">+ Blind/Time</button>
-  <button class="btn btn-sm bw" onclick="bulkDS('adv')">+ Advanced</button>
-  <button class="btn btn-sm bg" onclick="bulkDS('norm')">+ Normal</button></div></div>
-  <div class="panel"><h3>📄 Dataset Entries</h3>
-  <div class="fbar"><button class="btn btn-sm bs" onclick="fDS('all')">All (${D.ds.length})</button><button class="btn btn-sm br" onclick="fDS('sqli')">SQLi (${sq})</button><button class="btn btn-sm bg" onclick="fDS('n')">Normal (${nm})</button></div>
-  <div class="tw" style="max-height:420px;overflow-y:auto"><table><thead><tr><th>#</th><th>Input Pattern</th><th>Label</th><th>Category</th><th>Action</th></tr></thead><tbody id="DSB">${dsRows(D.ds)}</tbody></table></div></div>`;
-}
-
-function dsRows(data) {
-  return data.map((d, i) => `<tr><td>${i + 1}</td>
-  <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"><code style="font-size:.8em">${h(d.i)}</code></td>
-  <td><span class="badge ${d.l === 'sqli' ? 'b-red' : 'b-grn'}">${d.l === 'sqli' ? 'SQLi' : 'Normal'}</span></td>
-  <td style="font-size:.84em">${d.c}</td>
-  <td><button class="btn btn-sm br" onclick="rmDS(${d.id})">🗑️</button></td></tr>`).join('');
-}
-
-function fDS(f) {
-  let data = D.ds;
-  if (f !== 'all') data = data.filter(d => d.l === f);
-  document.getElementById('DSB').innerHTML = dsRows(data);
-}
-
-async function addDS() {
-  const inp = document.getElementById('DI').value.trim();
-  if (!inp) return toast('Enter pattern', 'err');
-  
-  const result = await api('/api/admin/dataset', 'POST', { i: inp, l: document.getElementById('DL').value, c: document.getElementById('DC').value });
-  
-  if (!result.success) return toast('Already exists', 'warn');
-  
-  D.ds.push({ id: D.ds.length + 1, i: inp, l: document.getElementById('DL').value, c: document.getElementById('DC').value });
-  document.getElementById('DI').value = '';
-  toast('Added! Retrain to apply.');
-  ML.refresh();
-  admDS(document.getElementById('ADM'));
-}
-
-async function rmDS(id) {
-  await api('/api/admin/dataset/' + id, 'DELETE');
-  D.ds = D.ds.filter(d => d.id !== id);
-  toast('Removed', 'err');
-  ML.refresh();
-  admDS(document.getElementById('ADM'));
-}
-
-async function bulkDS(t) {
-  const sets = {
-    taut: [{ i: "' OR 'x'='x", l: 'sqli', c: 'Tautology' }, { i: "' OR 1=1#", l: 'sqli', c: 'Tautology' }, { i: "admin' OR '1'='1'/*", l: 'sqli', c: 'Tautology' }, { i: "') OR ('1'='1", l: 'sqli', c: 'Tautology' }],
-    union: [{ i: "' UNION SELECT username,password FROM users--", l: 'sqli', c: 'Union' }, { i: "1 UNION SELECT NULL,table_name FROM information_schema.tables--", l: 'sqli', c: 'Union' }, { i: "' UNION ALL SELECT 1,2,3--", l: 'sqli', c: 'Union' }],
-    blind: [{ i: "' AND (SELECT COUNT(*) FROM users)>0--", l: 'sqli', c: 'Blind' }, { i: "1' AND IF(1=1,SLEEP(5),0)--", l: 'sqli', c: 'Time-based' }, { i: "' AND SUBSTRING(username,1,1)='a'--", l: 'sqli', c: 'Blind' }],
-    adv: [{ i: "'; DECLARE @q NVARCHAR(4000);EXEC(@q)--", l: 'sqli', c: 'Command' }, { i: "' AND extractvalue(1,concat(0x7e,(SELECT @@version)))--", l: 'sqli', c: 'Error-based' }, { i: "1; UPDATE users SET role='admin'--", l: 'sqli', c: 'Piggyback' }],
-    norm: [{ i: "hello@example.com", l: 'n', c: 'Normal' }, { i: "MyP@ssw0rd!", l: 'n', c: 'Normal' }, { i: "search electronics", l: 'n', c: 'Normal' }, { i: "order_12345", l: 'n', c: 'Normal' }, { i: "smartwatch review", l: 'n', c: 'Normal' }]
-  };
-  
-  await api('/api/admin/dataset/bulk', 'POST', { samples: sets[t] });
-  D.ds = await api('/api/admin/dataset');
-  toast(`Added ${sets[t].length} patterns!`);
-  ML.refresh();
-  admDS(document.getElementById('ADM'));
-}
-
-// Start
+// Init app
 init();
 </script>
 </body>
