@@ -326,7 +326,22 @@ ds:[
 ml:{ok:true,acc:96.8,ep:50,last:'2026-02-25',samp:20,f1:.95,prec:97.2,rec:96.4},
 me:null,nid:6,coStep:1,coData:{}
 };
-
+function loadData(){
+  const saved = localStorage.getItem("techbazaar_data");
+  if(saved){
+    const parsed = JSON.parse(saved);
+    Object.assign(D, parsed);
+  }
+}
+ function saveData(){
+  localStorage.setItem("techbazaar_data", JSON.stringify({
+    users: D.users,
+    logs: D.logs,
+    orders: D.orders,
+    ds: D.ds,
+    ml: D.ml
+  }));
+} 
 // =============== SQLI DETECTOR ===============
 class SQLD{
 constructor(){
@@ -377,7 +392,7 @@ function doLogin(){
 const em=document.getElementById('lEmail').value.trim(),pw=document.getElementById('lPass').value,al=document.getElementById('authMsg');
 const a1=ML.check(em),a2=ML.check(pw);
 if(a1.bad||a2.bad){const x=a1.bad?a1:a2,y=a1.bad?em:pw;
-D.logs.unshift({id:D.logs.length+1,t:new Date().toLocaleString(),ip:rip(),inp:y,tp:x.th.join(', '),sev:x.risk,st:'blocked',conf:x.conf});
+D.logs.unshift({id:D.logs.length+1,t:new Date().toLocaleString(),ip:rip(),inp:y,tp:x.th.join(', '),sev:x.risk,st:'blocked',conf:x.conf});saveData();
 al.className='alert-box err';al.textContent='⚠️ SQL Injection detected & blocked! Incident logged.';return}
 if(!em||!pw){al.className='alert-box err';al.textContent='Please fill in all fields.';return}
 const u=D.users.find(x=>x.email===em&&x.pw===pw);
@@ -394,6 +409,7 @@ if(!n||!e||!p){al.className='alert-box err';al.textContent='Fill all required fi
 if(D.users.find(u=>u.email===e)){al.className='alert-box err';al.textContent='Email already registered.';return}
 D.users.push({id:D.nid++,name:n,email:e,pw:p,phone:ph,role:'user',status:'active',joined:new Date().toISOString().split('T')[0],addr:'',orders:0});
 al.className='alert-box ok';al.textContent='Account created! Login now.';authTab('login');document.getElementById('lEmail').value=e;
+saveData();
 }
 function logout(){
 D.me=null;D.cart=[];if(MIV)clearInterval(MIV);
@@ -595,8 +611,8 @@ document.getElementById('UTB').innerHTML=us.map(u=>`<tr><td>#${u.id}</td><td>${u
 ${u.id!==1?`<button class="btn btn-sm bw" style="margin-left:4px" onclick="tRl(${u.id})">${u.role==='admin'?'Demote':'Promote'}</button>`:''}
 <button class="btn btn-sm bs" style="margin-left:4px" onclick="vU(${u.id})">👁️</button></td></tr>`).join('');
 }
-function tSt(id){const u=D.users.find(x=>x.id===id);if(!u||u.id===1)return;u.status=u.status==='active'?'suspended':'active';toast(u.name+' '+u.status);admUsers(document.getElementById('ADM'))}
-function tRl(id){const u=D.users.find(x=>x.id===id);if(!u||u.id===1)return;u.role=u.role==='admin'?'user':'admin';toast(u.name+' → '+u.role);admUsers(document.getElementById('ADM'))}
+function tSt(id){const u=D.users.find(x=>x.id===id);if(!u||u.id===1)return;u.status=u.status==='active'?'suspended':'active';toast(u.name+' '+u.status);admUsers(document.getElementById('ADM'))saveData();}
+function tRl(id){const u=D.users.find(x=>x.id===id);if(!u||u.id===1)return;u.role=u.role==='admin'?'user':'admin';toast(u.name+' → '+u.role);admUsers(document.getElementById('ADM'))saveData();}
 function vU(id){const u=D.users.find(x=>x.id===id);if(!u)return;
 const m=document.createElement('div');m.className='modal-bg';m.onclick=e=>{if(e.target===m)m.remove()};
 m.innerHTML=`<div class="modal-box"><button class="modal-x" onclick="this.closest('.modal-bg').remove()">✕</button><h3>👤 User #${u.id}</h3>
@@ -655,6 +671,7 @@ document.getElementById('TR').innerHTML=`<div style="padding:16px;border-radius:
 <p><strong>Risk:</strong> <span class="badge ${r.risk==='critical'?'b-crit':r.risk==='high'?'b-red':r.risk==='medium'?'b-yel':'b-grn'}">${r.risk}</span></p>
 ${r.th.length?`<p><strong>Patterns:</strong> ${r.th.join(', ')}</p>`:''}<p><strong>Score:</strong> ${r.sc}</p></div></div>`;
 D.logs.unshift({id:D.logs.length+1,t:new Date().toLocaleString(),ip:'127.0.0.1',inp,tp:r.th.join(', ')||'Normal',sev:r.risk,st:r.bad?'blocked':'allowed',conf:r.conf});
+saveData();
 }
 function startLive(){
 const m=document.getElementById('LM');if(!m)return;reqN=0;
@@ -748,7 +765,7 @@ const inp=document.getElementById('DI').value.trim();if(!inp)return toast('Enter
 if(D.ds.find(d=>d.i===inp))return toast('Already exists','warn');
 D.ds.push({i:inp,l:document.getElementById('DL').value,c:document.getElementById('DC').value});
 document.getElementById('DI').value='';toast('Added! Retrain to apply.');admDS(document.getElementById('ADM'));
-}
+saveData();}
 function rmDS(i){D.ds.splice(i,1);toast('Removed','err');admDS(document.getElementById('ADM'))}
 function bulkDS(t){
 const sets={
@@ -762,7 +779,20 @@ toast(`Added ${n} patterns!`);admDS(document.getElementById('ADM'));
 }
 
 // =============== INIT ===============
-rCats();rProds();
+function saveData(){
+    localStorage.setItem("techbazaar_db", JSON.stringify(D));
+}
+
+function loadData(){
+    const saved = localStorage.getItem("techbazaar_db");
+    if(saved){
+        Object.assign(D, JSON.parse(saved));
+    }
+}
+
+loadData();
+rCats();
+rProds();
 </script>
 </body>
 </html>
