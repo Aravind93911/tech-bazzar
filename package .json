@@ -1,2 +1,3 @@
 npm init -y
 npm install pg
+"start": "node server.js"
